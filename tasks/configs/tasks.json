@@ -2,6 +2,6 @@
   "acrobot": "Acrobot",
   "cartpole": "CartPole",
   "lander": "LunarLander",
-  "moutaincar": "MountainCar",
+  "mountaincar": "MountainCar",
   "pendulum": "Pendulum"
 }
