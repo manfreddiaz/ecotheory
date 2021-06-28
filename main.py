@@ -14,7 +14,9 @@ def main(num_seeds=3):
         for alg in [reinforce, dqn]:
             for env, seed in itertools.product(environments, seeds):
                 p.apply_async(alg, args=(env, seed))
-        p.join()
+
+    p.close()
+    p.join()
 
 
 if __name__ == '__main__':
