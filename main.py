@@ -10,13 +10,17 @@ def main(num_seeds=3):
     environments = tasks.load()
     seeds = range(num_seeds)
 
-    with multiprocessing.Pool() as p:
-        for alg in [reinforce, dqn]:
-            for env, seed in itertools.product(environments, seeds):
+    futures = []
+    p = multiprocessing.Pool()
+    for alg in [reinforce, dqn]:
+        for env, seed in itertools.product(environments, seeds):
+            futures.append(
                 p.apply_async(alg, args=(env, seed))
+            )
 
-    p.close()
-    p.join()
+    for future in futures:
+        future.wait()
+
 
 
 if __name__ == '__main__':

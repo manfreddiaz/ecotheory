@@ -88,7 +88,6 @@ class AcrobotEnv(core.Env):
         high = np.array([1.0, 1.0, 1.0, 1.0, self.MAX_VEL_1, self.MAX_VEL_2], dtype=np.float32)
         low = -high
         self.gravity = kwargs.get('gravity', 9.8)
-        print(self.gravity)
         self.observation_space = spaces.Box(low=low, high=high, dtype=np.float32)
         self.action_space = spaces.Discrete(3)
         self.state = None
