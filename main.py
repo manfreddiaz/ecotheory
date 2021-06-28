@@ -10,14 +10,12 @@ def main(num_seeds=3):
     environments = tasks.load()
     seeds = range(num_seeds)
 
-    futures = []
     p = multiprocessing.Pool()
+    futures = []
     for alg in [reinforce, dqn]:
         for env, seed in itertools.product(environments, seeds):
-            exp_id = f"{env}-{alg.__name__}-{seed}"
-            print(f"[spawning] -> {exp_id}")
             futures.append(
-                p.apply_async(alg, args=(env, seed, exp_id))
+                p.apply_async(alg, args=(env, seed, f"{env}-{alg.__name__}-{seed}"))
             )
 
     for future in futures:

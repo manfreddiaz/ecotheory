@@ -4,6 +4,27 @@ import os
 import gym
 
 EARTH_GRAVITY = 9.8
+GYM_PARAMETERS = {
+    "cartpole": {
+        "max_episode_steps": 200,
+        "reward_threshold": 195.0
+    },
+    "mountaincar": {
+        "max_episode_steps": 200,
+        "reward_threshold": -110.0,
+    },
+    "pendulum": {
+        "max_episode_steps": 200
+    },
+    "acrobot": {
+        "reward_threshold": -100.0,
+        "max_episode_steps": 500,
+    },
+    "lunarlander": {
+        "max_episode_steps": 1000,
+        "reward_threshold": 200
+    }
+}
 
 
 def load():
@@ -19,12 +40,14 @@ def load():
     registry = []
     for body, name in itertools.product(gravity.keys(), tasks.keys()):
         env_name = f"{body}-{tasks[name]}-v0"
+        kwargs = dict(GYM_PARAMETERS[name])
+        kwargs.update({
+            'gravity': gravity[body] * EARTH_GRAVITY
+        })
         gym.register(
             id=env_name,
             entry_point=f"tasks.envs:{tasks[name]}Env",
-            kwargs={
-                'gravity': gravity[body] * EARTH_GRAVITY
-            }
+            kwargs=kwargs
         )
         registry.append(env_name)
 
