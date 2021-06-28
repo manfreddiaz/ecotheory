@@ -20,7 +20,7 @@ GYM_PARAMETERS = {
         "reward_threshold": -100.0,
         "max_episode_steps": 500,
     },
-    "lunarlander": {
+    "lander": {
         "max_episode_steps": 1000,
         "reward_threshold": 200
     }
