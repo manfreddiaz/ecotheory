@@ -15,7 +15,7 @@ def main(num_seeds=3):
     for alg in [reinforce, dqn]:
         for env, seed in itertools.product(environments, seeds):
             futures.append(
-                p.apply_async(alg, args=(env, seed))
+                p.apply_async(alg, args=(env, seed, f"{env}-{alg.__name__}-{seed}"))
             )
 
     for future in futures:

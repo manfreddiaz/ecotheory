@@ -27,7 +27,7 @@ from pfrl import q_functions, replay_buffers, utils
 from pfrl.agents.dqn import DQN
 
 
-def main():
+def main(environment="CartPole-v0", seed=0, exp_id=None):
     import logging
 
     logging.basicConfig(level=logging.INFO)
@@ -42,9 +42,9 @@ def main():
             " If it does not exist, it will be created."
         ),
     )
-    parser.add_argument("--env", type=str, default="CartPole-v0")
-    parser.add_argument("--seed", type=int, default=0, help="Random seed [0, 2 ** 32)")
-    parser.add_argument("--gpu", type=int, default=None)
+    parser.add_argument("--env", type=str, default=environment)
+    parser.add_argument("--seed", type=int, default=seed, help="Random seed [0, 2 ** 32)")
+    parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument("--final-exploration-steps", type=int, default=10 ** 4)
     parser.add_argument("--start-epsilon", type=float, default=1.0)
     parser.add_argument("--end-epsilon", type=float, default=0.1)
@@ -82,12 +82,13 @@ def main():
             " --actor-learner enabled)"
         ),
     )  # NOQA
+
     args = parser.parse_args()
 
     # Set a random seed used in PFRL
     utils.set_random_seed(args.seed)
 
-    args.outdir = experiments.prepare_output_dir(args, args.outdir, argv=sys.argv)
+    args.outdir = experiments.prepare_output_dir(args, args.outdir, argv=sys.argv, exp_id=exp_id)
     print("Output files are saved in {}".format(args.outdir))
 
     # Set different random seeds for different subprocesses.

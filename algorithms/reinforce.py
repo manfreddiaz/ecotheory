@@ -21,13 +21,13 @@ from pfrl import experiments, utils
 from pfrl.policies import GaussianHeadWithFixedCovariance, SoftmaxCategoricalHead
 
 
-def main(environment="CartPole-v0", seed=0):
+def main(environment="CartPole-v0", seed=0, exp_id=None):
     import logging
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--env", type=str, default=environment)
     parser.add_argument("--seed", type=int, default=seed, help="Random seed [0, 2 ** 32)")
-    parser.add_argument("--gpu", type=int, default=None)
+    parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument(
         "--outdir",
         type=str,
@@ -49,6 +49,7 @@ def main(environment="CartPole-v0", seed=0):
     parser.add_argument("--load", type=str, default="")
     parser.add_argument("--log-level", type=int, default=logging.INFO)
     parser.add_argument("--monitor", action="store_true")
+
     args = parser.parse_args()
 
     logging.basicConfig(level=args.log_level)
@@ -56,7 +57,7 @@ def main(environment="CartPole-v0", seed=0):
     # Set a random seed used in PFRL.
     utils.set_random_seed(args.seed)
 
-    args.outdir = experiments.prepare_output_dir(args, args.outdir)
+    args.outdir = experiments.prepare_output_dir(args, args.outdir, exp_id=exp_id)
 
     def make_env(test):
         env = gym.make(args.env)
