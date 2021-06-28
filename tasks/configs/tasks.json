@@ -1,0 +1,7 @@
+{
+  "acrobot": "Acrobot",
+  "cartpole": "CartPole",
+  "lander": "LunarLander",
+  "moutaincar": "MountainCar",
+  "pendulum": "Pendulum"
+}
