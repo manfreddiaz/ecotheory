@@ -21,7 +21,7 @@ from pfrl import experiments, utils
 from pfrl.policies import GaussianHeadWithFixedCovariance, SoftmaxCategoricalHead
 
 
-def main(environment="CartPole-v0", seed=0, exp_id=None):
+def reinforce(environment="CartPole-v0", seed=0, exp_id=None):
     import logging
 
     parser = argparse.ArgumentParser()
@@ -149,4 +149,4 @@ def main(environment="CartPole-v0", seed=0, exp_id=None):
 
 
 if __name__ == "__main__":
-    main()
+    reinforce()

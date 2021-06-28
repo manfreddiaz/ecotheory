@@ -27,7 +27,7 @@ from pfrl import q_functions, replay_buffers, utils
 from pfrl.agents.dqn import DQN
 
 
-def main(environment="CartPole-v0", seed=0, exp_id=None):
+def dqn(environment="CartPole-v0", seed=0, exp_id=None):
     import logging
 
     logging.basicConfig(level=logging.INFO)
@@ -270,4 +270,4 @@ def main(environment="CartPole-v0", seed=0, exp_id=None):
 
 
 if __name__ == "__main__":
-    main()
+    dqn()

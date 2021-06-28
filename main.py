@@ -2,8 +2,8 @@ import itertools
 import multiprocessing
 import tasks
 
-from algorithms.reinforce import main as reinforce
-from algorithms.dqn import main as dqn
+from algorithms.reinforce import reinforce
+from algorithms.dqn import dqn
 
 
 def main(num_seeds=3):
