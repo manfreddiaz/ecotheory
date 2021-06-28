@@ -27,7 +27,7 @@ def reinforce(environment="CartPole-v0", seed=0, exp_id=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("--env", type=str, default=environment)
     parser.add_argument("--seed", type=int, default=seed, help="Random seed [0, 2 ** 32)")
-    parser.add_argument("--gpu", type=int, default=None)
+    parser.add_argument("--gpu", type=int, default=0)
     parser.add_argument(
         "--outdir",
         type=str,
