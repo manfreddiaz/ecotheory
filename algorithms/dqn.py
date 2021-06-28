@@ -44,7 +44,7 @@ def dqn(environment="CartPole-v0", seed=0, exp_id=None):
     )
     parser.add_argument("--env", type=str, default=environment)
     parser.add_argument("--seed", type=int, default=seed, help="Random seed [0, 2 ** 32)")
-    parser.add_argument("--gpu", type=int, default=0)
+    parser.add_argument("--gpu", type=int, default=None)
     parser.add_argument("--final-exploration-steps", type=int, default=10 ** 4)
     parser.add_argument("--start-epsilon", type=float, default=1.0)
     parser.add_argument("--end-epsilon", type=float, default=0.1)
