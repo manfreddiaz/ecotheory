@@ -1,12 +1,6 @@
 {
-  "Sun": 28.02,
-  "Mercury": 0.377,
-  "Venus": 0.905,
   "Earth": 1.0,
   "Moon": 0.1657,
   "Mars": 0.379,
-  "Ceres": 0.029,
-  "Jupiter": 2.528,
-  "Uranus": 0.886,
-  "Neptune": 1.137
+  "Jupiter": 2.528
 }
