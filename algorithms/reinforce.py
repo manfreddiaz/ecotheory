@@ -10,6 +10,7 @@ To solve InvertedPendulum-v1, run:
     python train_reinforce_gym.py --env InvertedPendulum-v1
 """
 import argparse
+import os
 
 import gym
 import gym.spaces
@@ -58,6 +59,11 @@ def reinforce(environment="CartPole-v0", seed=0, exp_id=None):
     utils.set_random_seed(args.seed)
 
     args.outdir = experiments.prepare_output_dir(args, args.outdir, exp_id=exp_id)
+    if os.path.exists(args.outdir):
+        for file in os.listdir(args.outdir):
+            if "finish" in file:
+                print('Experiment completed before. Remove finish folder to re-run')
+                return
 
     def make_env(test):
         env = gym.make(args.env)

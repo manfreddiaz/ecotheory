@@ -91,6 +91,12 @@ def dqn(environment="CartPole-v0", seed=0, exp_id=None):
     args.outdir = experiments.prepare_output_dir(args, args.outdir, argv=sys.argv, exp_id=exp_id)
     print("Output files are saved in {}".format(args.outdir))
 
+    if os.path.exists(args.outdir):
+        for file in os.listdir(args.outdir):
+            if "finish" in file:
+                print('Experiment completed before. Remove finish folder to re-run')
+                return
+
     # Set different random seeds for different subprocesses.
     # If seed=0 and processes=4, subprocess seeds are [0, 1, 2, 3].
     # If seed=1 and processes=4, subprocess seeds are [4, 5, 6, 7].
