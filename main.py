@@ -10,18 +10,19 @@ def main(num_seeds=1):
     environments = tasks.load()
     seeds = range(num_seeds)
 
-    p = multiprocessing.Pool()
-    futures = []
+    # p = multiprocessing.Pool()
+    # futures = []
     for alg in [reinforce, dqn]:
         for env, seed in itertools.product(environments, seeds):
-            futures.append(
-                p.apply(alg, args=(env, seed, f"{env}-{alg.__name__}-{seed}"))
-            )
+            alg(env, seed, f"{env}-{alg.__name__}-{seed}")
+        #     futures.append(
+        #         p.apply(alg, args=(env, seed, f"{env}-{alg.__name__}-{seed}"))
+        #     )
 
-    for future in futures:
-        future.get()
+    # for future in futures:
+    #     future.get()
 
-    p.join()
+    # p.join()
 
 
 if __name__ == '__main__':
