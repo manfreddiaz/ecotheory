@@ -62,7 +62,7 @@ def reinforce(environment="CartPole-v0", seed=0, exp_id=None):
     if os.path.exists(args.outdir):
         for file in os.listdir(args.outdir):
             if "finish" in file:
-                print('Experiment completed before. Remove finish folder to re-run')
+                print(f'Experiment in {args.outdir} completed before. Remove finish folder to re-run')
                 return
 
     def make_env(test):
