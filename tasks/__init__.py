@@ -40,14 +40,14 @@ def load():
     registry = []
     for body, name in itertools.product(gravity.keys(), tasks.keys()):
         env_name = f"{body}-{tasks[name]}-v0"
-        kwargs = dict(GYM_PARAMETERS[name])
-        kwargs.update({
+        kwargs = {
             'gravity': gravity[body] * EARTH_GRAVITY
-        })
+        }
         gym.register(
             id=env_name,
             entry_point=f"tasks.envs:{tasks[name]}Env",
-            kwargs=kwargs
+            kwargs=kwargs,
+            **GYM_PARAMETERS[name]
         )
         registry.append(env_name)
 
